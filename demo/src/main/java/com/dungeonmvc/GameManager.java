@@ -109,7 +109,7 @@ public class GameManager {
             }
         }
         // crear enemigo y añadirlo
-        enemy = new Enemy("enemy", "Sombra", 100, DiceRoll.roll(Dice.d4), 10, 5, new Vector2(7, 0), board);
+        enemy = new Enemy("enemy", "Sombra", 100, DiceRoll.roll(Dice.d6), 10, 5, new Vector2(7, 0), board);
         board.addEnemy(enemy);
         addCharacter(enemy);
         // añadimos el objeto o entorno aqui
@@ -135,7 +135,7 @@ public class GameManager {
     }
 
     public void Victory() {
-        System.out.println("¡Has derrotado a todos los enemigos! ¡Ganaste!");
+        System.out.println("¡Has ganado! !Enhorabuena!");
         Platform.exit();
     }
 

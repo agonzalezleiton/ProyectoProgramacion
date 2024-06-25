@@ -1,0 +1,9 @@
+Aqui añadire la documentacion sobre la guia de usuario
+
+Comenzamos con la guia de usuario, este programa es un programa el cual consta de un juego de mazmorras el cual esta en 2d con un mapeado muy sencillo, implementado con un jugador, objetos y enemigos para usar este programa 
+entraremos en el VSC (visual studio code) o un programa que soporte javaFX, y acto seguido abriremos la carpeta y ejecutaremos el programa, los controles son muy sencillos para el usuario puesto que solo se utiliza las teclas WASD tanto como 
+para el movimiento del jugador como las acciones correspondientes ya sea interacciones con enemigos o con objetos del entorno ambiente, el programa funciona de tal manera que te perseguira un enemigo en cuanto entre en su campo de vision y sino
+tendras que tener cuidado de que no te descubra, en tal caso de que te pille los talones usando las teclas WASD podras interactuar con el enemigo presionando la tecla correspondiente a su celda, y si te deja con poca vida y decides curarte usa los 
+objetos que hay por el mapa para aumentar tu vida al maximo.
+
+Buena Suerte!

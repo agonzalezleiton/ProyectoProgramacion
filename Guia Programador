@@ -1,0 +1,125 @@
+Esta será la guia de Programador, explicare como funciona el programa, que clases contiene y explicarlas para que se pueda entender el programa.
+
+Comenzamos con que este juego esta hecho en JavaFX, un lenguaje de programacion derivado de java, a continuacion, despues de clonar el repositorio traer el proyecto, necesitaremos abrir visual studio code, seleccionaremos la carpeta 
+con nuestro proyecto, a la hora de abrirse en el explorador nos fijaremos que tenemos como contenido, obviando la parte de FXMl y demas que los archivos principales constan de:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+App:
+es el archivo main el cual el código proporcionado es una aplicación JavaFX para una interfaz gráfica de usuario (GUI) en el contexto de un juego de mazmorras.
+contiene librerias importadas como com.dungeonmvc.models.Board para el modelo del tablero del juego, y javafx.application.Application y otros componentes de JavaFX para la creación de la interfaz gráfica.
+
+Funcionalidad del Codigo:
+Inicialización de la Aplicación: Configura el entorno gráfico inicial, incluyendo la ventana y la escena.
+Gestión del Tablero: Establece y prueba el tablero del juego usando GameManager.
+Interfaz de Usuario: Carga y muestra la interfaz gráfica desde archivos FXML.
+Reinicio de la Aplicación: Permite reiniciar la aplicación.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GameManager:
+Esta clase es un singleton que maneja la lógica del juego, incluyendo los personajes, el tablero, y la interacción entre ellos.
+aqui encontramos logicas para la agregacion de player, enemigos y objetos de entorno, interacciones, y tambien la agregacion de un tablero.
+
+Funcionalidad del Código:
+Gestión del Estado del Juego: La clase GameManager maneja la lógica principal y el estado del juego.
+Manejo de Personajes y Tablero: Permite añadir y gestionar personajes y el tablero del juego.
+Control de Turnos: Implementa la lógica para los turnos de jugadores y enemigos.
+Interacción y Eventos: Maneja la interacción con elementos del entorno y verifica condiciones de derrota y victoria.
+Esta clase es crucial para la lógica central del juego, coordinando entre los personajes, el tablero, y los eventos del juego.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BoardViewController:
+Este codigo actua como el controlador de la vista del tablero del juego en un entorno JavaFX. 
+Esta clase es responsable de la inicialización y actualización de la interfaz gráfica del tablero, así como de manejar la interacción del usuario con el entorno del juego.
+
+Funcionalidad del Código:
+Inicialización del Controlador: Inicializa el controlador y suscribe el BoardViewController como observador del Board.
+Configuración del Tablero: Configura la disposición gráfica del tablero, añadiendo filas, columnas e imágenes para celdas, personajes y entornos.
+Interacción con el Entorno: Permite la interacción del usuario con los elementos del entorno, consumiendo y eliminando entornos de la interfaz gráfica.
+Actualización Dinámica: Actualiza dinámicamente la posición y visibilidad de personajes y entornos en respuesta a cambios en el estado del juego.
+Conversión de Coordenadas: Proporciona métodos para convertir coordenadas del modelo del juego a coordenadas de la interfaz gráfica.
+La clase BoardViewController es esencial para gestionar la visualización del tablero del juego y la interacción del usuario en una aplicación JavaFX.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Este controlador (PlayerViewController) es esencial para mostrar y actualizar la información del jugador en la interfaz gráfica de una aplicación JavaFX, 
+proporcionando una visualización actualizada de sus atributos como salud, fuerza y defensa.
+
+Funcionalidad del Código:
+Inicialización: Configura y prepara el controlador al cargar.
+Actualización de Datos: Actualiza dinámicamente la interfaz gráfica del jugador con sus estadísticas actuales.
+Integración con JavaFX: Utiliza anotaciones @FXML para vincular componentes de la interfaz de usuario con variables en el controlador.
+Observación del Estado: Implementa la interfaz Observer para recibir notificaciones de cambios en el estado del jugador.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Este código implementa la clase MainViewController, que sirve como el controlador principal de la vista en una aplicación JavaFX,
+la configuración inicial de componentes y el manejo de interacciones del usuario como clics y pulsaciones de teclas en el contexto del juego.
+
+Funcionalidad del Código:
+Inicialización y Configuración: Carga y configura las vistas y paneles iniciales de la aplicación al iniciar el controlador.
+Manejo de Eventos: Define acciones y comportamientos para eventos de usuario como clics de botón y presiones de teclas.
+Integración con JavaFX: Utiliza anotaciones @FXML para vincular componentes de la interfaz de usuario con variables en el controlador.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ahora contamos con los archivos que son importantes para el juego por que son basicamente la chicha del juego y se explicaran brevemente aqui:
+
+Board:es crucial para la lógica del juego, proporcionando métodos para interactuar con el entorno del juego, gestionar las entidades presentes en el tablero y facilitar la notificación de eventos a través de sus observadores.
+
+Funcionalidad del Código:
+Gestión del Tablero: Permite la creación, modificación y consulta del estado del tablero.
+Gestión de Objetos y Entidades: Maneja la colocación, movimiento y eliminación de jugadores, enemigos y entornos.
+Observación y Notificación: Implementa un sistema de observadores para notificar cambios en el tablero a otras partes del juego.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Cell:El código proporcionado implementa la clase Cell, que representa una celda en el tablero del juego. Aquí tienes un resumen de su estructura y funcionalidad:
+Esta clase es fundamental para la representación de cada celda en el tablero del juego, proporcionando métodos simples pero efectivos para gestionar y consultar el estado de cada posición del tablero.
+
+Funcionalidad del Código:
+Representación de Celda: Almacena información sobre si la celda es piso o no, y el objeto interactuable presente en la misma.
+Manipulación de Estado: Permite modificar y consultar el estado de la celda y el objeto interactuable asociado.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Character: esta clase es una superclase de player y enemigo, cosa que representa y manipula los personajes dentro del juego proporcionando metodos simples para la gestion de atributos.
+
+Funcionalidad del Código:
+Representación de Personaje: Almacena información esencial sobre cada personaje, incluyendo características como salud, fuerza, defensa, velocidad, y su posición en el tablero.
+Comparación de Velocidad: Implementa la interfaz Comparable<Character> para permitir la comparación y el ordenamiento de personajes basado en su velocidad.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Enemy (subclase de character): es fundamental para la implementación de la lógica del juego, proporcionando comportamientos específicos para los enemigos que interactúan con otros elementos del juego de manera dinámica y estratégica.
+
+Funcionalidad del Código;
+Representación de Enemigo: Utiliza la clase Character como base para representar las características y posición específicas de un enemigo en el juego.
+Interacción con el Jugador: Define cómo el enemigo interactúa con el jugador, implementando un método de combate (Combate(Player player)).
+Movimiento Estratégico: Decide dinámicamente cómo el enemigo se moverá en el tablero, eligiendo entre movimiento hacia el jugador o movimiento aleatorio, contribuyendo así a la jugabilidad y dinámica del juego.
+Notificación de Observadores: Notifica a los observadores (como el tablero y el jugador) sobre cambios significativos, como movimientos y resultados de combate.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Player (subclase de character): Extiende la clase Character y representa al jugador dentro del juego, Este diseño permite una integración flexible del jugador en el juego, 
+facilitando la implementación de comportamientos específicos y la comunicación con otros componentes del juego a través del patrón de observador implementado.
+
+Funcionalidad del Código:
+Representación del Jugador: Utiliza la clase Character como base para representar las características y posición específicas del jugador en el juego.
+Suscripción y Notificación de Observadores: Permite a otros componentes del juego (como la interfaz de usuario) observar y responder a cambios en el jugador, como cambios de nombre, salud, retrato y armas equipadas.
+Movimiento y Combate: Define cómo el jugador se mueve en el tablero y cómo interactúa con los enemigos mediante el método move(Board board, Board.Direction direction) y Combate(Enemy enemy) respectivamente.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Entorno: Representa un entorno en el juego que el jugador puede interactuar, permite la creación de diferentes tipos de entornos que pueden interactuar de manera única con el jugador u otros personajes del juego, 
+facilitando la creación de experiencias variadas y dinámicas dentro del entorno del juego.
+
+Funcionalidad del Código
+Interacción con el Jugador (Player): La clase Entorno implementa la interfaz Interactuable, permitiendo que el jugador interactúe con este entorno. 
+En este caso específico, cuando el jugador se encuentra con este entorno, su salud se restablece a 100 y el entorno se elimina del tablero.
+
+Encapsulación de Datos: Utiliza métodos de acceso (getters y setters) para acceder y modificar los datos de la imagen y la posición del entorno, asegurando un encapsulamiento adecuado.
+Integración con GameManager: Utiliza el método GameManager.getInstance().consumeEntorno() para eliminar este entorno del tablero y de la vista después de que el jugador interactúa con él, 
+mostrando una integración con la lógica central del juego.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+interactuable: El código proporcionado define una interfaz llamada Interactuable.
+
+Propósitos:
+Interacción entre Objetos:
+
+La interfaz Interactuable sirve para definir un contrato común para cualquier objeto que pueda interactuar con un Character. 
+Esto puede incluir objetos como enemigos (Enemy), entornos (Entorno), o cualquier otro elemento del juego que pueda influir en las propiedades o estado de un personaje (Character).
+
+Polimorfismo:
+Al usar esta interfaz, se facilita la implementación de diferentes tipos de interacciones específicas entre personajes y otros elementos del juego. 
+Por ejemplo, un enemigo podría atacar a un jugador (Player), mientras que un entorno podría curar al jugador.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Inventory: gestiona el inventario de objetos en el juego.
+Este diseño promueve un acoplamiento débil entre las partes del sistema que manejan el inventario y aquellas que necesitan ser notificadas de sus cambios, 
+lo cual es beneficioso para mantener un código modular y fácil de mantener.
+
+Propósito:
+Gestión del Inventario:
+La clase Inventory gestiona la adición de objetos al inventario, la consulta del contenido actual, y la notificación de cualquier cambio a los observadores registrados.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

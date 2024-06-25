@@ -18,13 +18,10 @@ public class Entorno implements Interactuable {
             Player player = (Player) character;
             // Curar al jugador
             player.setHealth(100);
-
             // Eliminar la poción del tablero y de la vista
             GameManager.getInstance().consumeEntorno(this.getPosition().getX(), this.getPosition().getY());
         }
     }
-
-    // Métodos getter y setter
     public String getImage() {
         return this.image;
     }

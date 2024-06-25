@@ -43,7 +43,7 @@ public class BoardViewController implements Observer {
         characterImageViews = new HashMap<>();
         entornoImageViews = new HashMap<>();
     }
-
+    // metodos para añadir las imagenes tanto de player como enemigos como entornos u objetos.
     public void setUp() {
         int cellNumber = board.getSize();
         cellSize = boardSize / cellNumber;
@@ -72,7 +72,7 @@ public class BoardViewController implements Observer {
                 grid.add(boardImg, row, col);
             }
         }
-
+            // imagenes de los personajes incluidos que sean png
         for (Character character : GameManager.getInstance().getCharacters()) {
             ImageView characterImg = new ImageView();
             characterImg.setFitWidth(cellSize);
@@ -89,7 +89,7 @@ public class BoardViewController implements Observer {
             characterImageViews.put(character, characterImg);
             pane.getChildren().add(characterImg);
         }
-
+        // imagenes del entorno que sean gifs 
         for (Entorno entorno : board.getEntornos()) {
             ImageView entornoImg = new ImageView();
             entornoImg.setFitWidth(cellSize);
@@ -111,7 +111,7 @@ public class BoardViewController implements Observer {
 
         onChange();
     }
-
+    // metodo para que se interactue con los objetos entorno
     public void interactWithEntorno(int row, int col) {
         com.dungeonmvc.models.Cell cell = board.getCell(new Vector2(row, col));
         if (cell.getInteractuable() instanceof Entorno) {
@@ -125,7 +125,7 @@ public class BoardViewController implements Observer {
             }
         }
     }
-
+    //iterador para los personajes
     @Override
     public void onChange() {
         Iterator<Map.Entry<Character, ImageView>> iterator = characterImageViews.entrySet().iterator();
@@ -142,7 +142,7 @@ public class BoardViewController implements Observer {
                 imageView.setLayoutY(newPos.getY());
             }
         }
-
+        //iterador para el entorno
         Iterator<Map.Entry<Entorno, ImageView>> entornoIterator = entornoImageViews.entrySet().iterator();
         while (entornoIterator.hasNext()) {
             Map.Entry<Entorno, ImageView> entry = entornoIterator.next();
@@ -159,7 +159,7 @@ public class BoardViewController implements Observer {
     public void onChange(String... args) {
         if (args.length > 0 && args[0].equals("Health")) {
             int newHealth = Integer.parseInt(args[1]);
-            System.out.println("Enemy Health changed: " + newHealth);
+            System.out.println("la vida del enemigo cambio a: " + newHealth);
         }
     }
 

@@ -43,7 +43,7 @@ public class PlayerViewController implements Observer{
 
         onChange();
     }
-
+    // esto son los textos que vemos en la interfaz que nos dan infomacion sobre el player
     @Override
     public void onChange() {
         nameTag.setText(player.getName());

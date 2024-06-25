@@ -51,7 +51,7 @@ public class GameManager {
     public void setBoard(Board board) {
         this.board = board;
     }
-
+    // aquiimplementamos los movimientos de los player y de los enemigos 
     public void newTurn(Direction direction) {
         for (Character character : characters) {
             if (character instanceof Player) {
@@ -117,28 +117,30 @@ public class GameManager {
         board.addEntorno(health);
         board.getCell(new Vector2(2, 13)).setInteractuable(health);
     }
-
+    // metodo para eliminar la imagen del enemigo del tablero y el enemigo de la lista
     public void removeEnemy(Enemy enemy) {
+        // lista
         characters.remove(enemy);
+        // tablero
         board.removeEnemy(enemy);
     }
-
+    //metodo para finalizar el juego si el player es derrotado
     public void endGame() {
         System.out.println("El jugador ha sido derrotado. Fin del juego.");
     }
-
+    // verificar si el player tiene la vida a cero y cerrar el programa
     public void checkPlayerDefeat() {
         if (player.getHealth() <= 0) {
             System.out.println("¡Has sido derrotado, perdiste!");
             Platform.exit();
         }
     }
-
+    // metodo que sera llamado cuando se gane la partida
     public void Victory() {
         System.out.println("¡Has ganado! !Enhorabuena!");
         Platform.exit();
     }
-
+    // metodo para que cuando el objeto entorno sea consumido se quite del tablero y que realice la interaccion
     public void consumeEntorno(int row, int col) {
         Cell cell = board.getCell(new Vector2(row, col));
         if (cell.getInteractuable() instanceof Entorno) {

@@ -22,7 +22,7 @@ public class Enemy extends Character {
 
     public void Combate(Player player) {
         System.out.println(this.getName() + " interactua con " + player.getName());
-        // Combatee
+        // metodo para el combate contra el player
         player.setHealth(player.getHealth() - this.getStrenght());
         this.setHealth(this.getHealth() - player.getStrenght());
 
@@ -40,6 +40,7 @@ public class Enemy extends Character {
         player.notifyObservers();
     }
 
+    // metodos de movimiento, tanto hacia el player como random.
     public void moverEnemigo() {
         // Verificar si el enemigo está sin vida
         if (this.getHealth() <= 0) {
@@ -49,8 +50,8 @@ public class Enemy extends Character {
         Vector2 posicionEnemigo = this.getPosition();
 
         double distancia = Vector2.distancia(posicionJugador, posicionEnemigo);
-
-        if (distancia <= 3) {
+        // esto es la vision del enemigo.
+        if (distancia <= 6) {
             moverHaciaJugador(posicionJugador, posicionEnemigo);
         } else {
             moverAleatoriamente();
@@ -58,6 +59,8 @@ public class Enemy extends Character {
         board.notifyObservers();
     }
 
+    // metodo para el movimiento aleatorio del enemigo que sera llamado en el metodo
+    // de movimiento.
     private void moverAleatoriamente() {
         Random random = new Random();
         Vector2[] posiblesMovimientos = {

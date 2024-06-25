@@ -76,7 +76,7 @@ public class Player extends Character {
     public Inventory getInventory() {
         return this.inventory;
     }
-
+    // metodo de movimiento del player, incluye si es movimiento valido o no, y si esta cerca del enemigo o entorno que interactue
     public void move(Board board, Board.Direction direction) {
         Vector2 destination = board.getDestination(this.getPosition(), direction);
         if (board.movimientoValido(destination)) {
@@ -94,22 +94,23 @@ public class Player extends Character {
 
     public void Combate(Enemy enemy) {
         System.out.println(this.getName() + " interactua con " + enemy.getName());
-        // Combate
+        //metodo de combate del player hacia los enemigos una vez estan juntos
         enemy.setHealth(enemy.getHealth() - this.getStrenght());
         this.setHealth(this.getHealth() - enemy.getStrenght());
 
         if (enemy.getHealth() <= 0) {
             System.out.println(enemy.getName() + " fue derrotado por " + this.getName());
-            // quitar la img del enemigo del tablero
+            // quitar la img del enemigo del tablero cuando es derrotado
             enemy.getBoard().removeEnemy(enemy);
             enemy.getBoard().getCell(enemy.getPosition()).setInteractuable(null);
         }
+        // vida del enemigo llegue a 0 dar un mensaje
         if (this.getHealth() <= 0) {
             System.out.println(this.getName() + " fue derootado por" + enemy.getName());
         }
         notifyObservers();
     }
-
+    //metodo para la interaccion entre el player y el enemigo, en este caso el combate
     @Override
     public void interactWith(Character character) {
         if (character instanceof Enemy) {

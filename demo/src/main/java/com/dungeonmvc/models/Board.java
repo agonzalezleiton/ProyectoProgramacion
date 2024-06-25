@@ -106,7 +106,7 @@ public class Board {
         board[enemy.getPosition().getX()][enemy.getPosition().getY()].setInteractuable(enemy);
     }
 
-    // movimiento del enemigo
+    // movimiento  del enemigo en el tablero
     public void moveEnemy() {
         for (Enemy enemy : enemies) {
             enemy.moverEnemigo();

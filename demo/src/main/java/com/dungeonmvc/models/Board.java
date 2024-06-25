@@ -6,6 +6,7 @@ import com.dungeonmvc.utils.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Board {
     private ArrayList<Observer> observers;
@@ -20,6 +21,7 @@ public class Board {
     private String wallImage;
     private Player player;
     private List<Enemy> enemies;
+    private List<Cazador> cazadores;
     private List<Entorno> entornos;
 
     public Board(int size, String floorImage, String wallImage) {
@@ -31,6 +33,8 @@ public class Board {
         this.player = GameManager.getInstance().getPlayer();
         observers = new ArrayList<>();
         this.entornos = new ArrayList<>();
+        this.cazadores = new ArrayList<>();
+
 
     }
 
@@ -105,6 +109,8 @@ public class Board {
         enemies.add(enemy);
         board[enemy.getPosition().getX()][enemy.getPosition().getY()].setInteractuable(enemy);
     }
+    
+    
 
     // movimiento  del enemigo en el tablero
     public void moveEnemy() {
@@ -112,7 +118,6 @@ public class Board {
             enemy.moverEnemigo();
         }
     }
-
     // quitar img del enemigo
     public void removeEnemy(Enemy enemy) {
         enemies.remove(enemy);
@@ -133,6 +138,20 @@ public class Board {
             return false;
         }
         return board[destination.getX()][destination.getY()].getIsFloor();
+    }
+     public Enemy getRandomEnemy() {
+        List<Enemy> aliveEnemies = new ArrayList<>();
+        for (Enemy enemy : enemies) {
+            if (enemy.getHealth() > 0) {
+                aliveEnemies.add(enemy);
+            }
+        }
+
+        if (!aliveEnemies.isEmpty()) {
+            Random random = new Random();
+            return aliveEnemies.get(random.nextInt(aliveEnemies.size()));
+        }
+        return null;
     }
 
     public Vector2 getDestination(Vector2 position, Direction direction) {
@@ -176,4 +195,21 @@ public class Board {
         notifyObservers();
     }
 
-}
+    public void removeCazador(Cazador cazador) {
+        cazadores.remove(cazador); // Remover al cazador de la lista de cazadores activos
+        // Actualizar la celda del tablero
+        Cell cell = getCell(cazador.getPosition());
+        if (cell != null) {
+            cell.setInteractuable(null);
+        }
+        }
+        public void addCazador(Cazador cazador) {
+            cazadores.add(cazador);
+            Vector2 position = cazador.getPosition();
+            board[position.getX()][position.getY()].setInteractuable(cazador);
+    
+            notifyObservers();
+        }
+    }
+    
+

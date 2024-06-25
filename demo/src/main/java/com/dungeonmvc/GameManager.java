@@ -51,12 +51,16 @@ public class GameManager {
     public void setBoard(Board board) {
         this.board = board;
     }
-    // aquiimplementamos los movimientos de los player y de los enemigos 
+
+    // aquiimplementamos los movimientos de los player y de los enemigos
     public void newTurn(Direction direction) {
         for (Character character : characters) {
             if (character instanceof Player) {
                 ((Player) character).move(board, direction);
                 System.out.println("Turno de jugador");
+            } else if (character instanceof Cazador) {
+                ((Cazador) character).moverCazador();
+                System.out.println("Turno de cazador");
             } else if (character instanceof Enemy) {
                 ((Enemy) character).moverEnemigo();
                 System.out.println("Turno de enemy");
@@ -112,22 +116,31 @@ public class GameManager {
         enemy = new Enemy("enemy", "Sombra", 100, DiceRoll.roll(Dice.d6), 10, 5, new Vector2(7, 0), board);
         board.addEnemy(enemy);
         addCharacter(enemy);
+
+        Cazador cazador = new Cazador("cazador", "Cazador", 100, DiceRoll.roll(Dice.d6), 10, 5, new Vector2(9, 14),board, enemy);
+        board.addCazador(cazador);
+        addCharacter(cazador);
+
         // añadimos el objeto o entorno aqui
-        Entorno health = new Entorno("health", new Vector2(14, 0));
+        Entorno health = new Entorno("health", new Vector2(0, 14));
         board.addEntorno(health);
         board.getCell(new Vector2(2, 13)).setInteractuable(health);
     }
-    // metodo para eliminar la imagen del enemigo del tablero y el enemigo de la lista
+
+    // metodo para eliminar la imagen del enemigo del tablero y el enemigo de la
+    // lista
     public void removeEnemy(Enemy enemy) {
         // lista
         characters.remove(enemy);
         // tablero
         board.removeEnemy(enemy);
     }
-    //metodo para finalizar el juego si el player es derrotado
+
+    // metodo para finalizar el juego si el player es derrotado
     public void endGame() {
         System.out.println("El jugador ha sido derrotado. Fin del juego.");
     }
+
     // verificar si el player tiene la vida a cero y cerrar el programa
     public void checkPlayerDefeat() {
         if (player.getHealth() <= 0) {
@@ -135,12 +148,15 @@ public class GameManager {
             Platform.exit();
         }
     }
+
     // metodo que sera llamado cuando se gane la partida
     public void Victory() {
         System.out.println("¡Has ganado! !Enhorabuena!");
         Platform.exit();
     }
-    // metodo para que cuando el objeto entorno sea consumido se quite del tablero y que realice la interaccion
+
+    // metodo para que cuando el objeto entorno sea consumido se quite del tablero y
+    // que realice la interaccion
     public void consumeEntorno(int row, int col) {
         Cell cell = board.getCell(new Vector2(row, col));
         if (cell.getInteractuable() instanceof Entorno) {

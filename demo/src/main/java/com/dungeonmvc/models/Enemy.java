@@ -1,11 +1,14 @@
 package com.dungeonmvc.models;
 
+import com.dungeonmvc.interfaces.Observer;
 import com.dungeonmvc.utils.Vector2;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Enemy extends Character {
-    private Board board;
+    protected Board board;
+    ArrayList<Observer> observers;
 
     public Enemy(String image, String name, int Health, int strength, int defense, int speed, Vector2 position,
             Board board) {
@@ -59,9 +62,8 @@ public class Enemy extends Character {
         board.notifyObservers();
     }
 
-    // metodo para el movimiento aleatorio del enemigo que sera llamado en el metodo
-    // de movimiento.
-    private void moverAleatoriamente() {
+    
+    protected void moverAleatoriamente() {
         Random random = new Random();
         Vector2[] posiblesMovimientos = {
                 new Vector2(this.getPosition().getX() - 1, this.getPosition().getY()),
@@ -116,5 +118,9 @@ public class Enemy extends Character {
 
     public Board getBoard() {
         return this.board;
+    }
+
+    public void notifyObservers() {
+        observers.forEach(x -> x.onChange());
     }
 }
